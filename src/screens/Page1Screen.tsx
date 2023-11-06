@@ -1,8 +1,9 @@
 import {StackScreenProps} from '@react-navigation/stack';
 import React from 'react';
 import {Button, Text, View} from 'react-native';
-import {styles} from '../theme/appTheme';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {styles} from '../theme/appTheme';
 
 /* se crea una interface que se extienda de StackScreenProps pero este me pide dos argumentos StackScreenProps<un objeto llamado, especificar las propiedades que va a tener ese objeto> "StackScreenProps<ParamList, RouteName>". Se extiende porque este componente puede ser que reciba otra información aparte de lo que ya le da StackScreenProps, como por ejemplo un id, name, address, email, etc... */
 interface Page1ScreenProps extends StackScreenProps<any, any> {}
@@ -29,11 +30,12 @@ export const Page1Screen = ({navigation}: Page1ScreenProps) => {
               name: 'Pedro',
             })
           }>
+          <Icon name="body-outline" size={38} color="#fff" />
           <Text style={styles.globalBtnText}>Pedro</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[styles.globalBtn, {backgroundColor: '#e47c7c'}]}
+          style={[styles.globalBtn, {backgroundColor: '#e63e3e'}]}
           onPress={() =>
             navigation.navigate('PersonScreen', {
               id: 2,
@@ -41,6 +43,7 @@ export const Page1Screen = ({navigation}: Page1ScreenProps) => {
               address: 'Dirección',
             })
           }>
+          <Icon name="woman-outline" size={38} color="#fff" />
           <Text style={styles.globalBtnText}>Maria</Text>
         </TouchableOpacity>
       </View>
