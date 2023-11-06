@@ -15,6 +15,12 @@
   - Material Top Tabs Navigator (es para usar el tema de material-design para la barra superior de pestañas): https://reactnavigation.org/docs/material-top-tab-navigator/
   - Iconos: https://github.com/oblador/react-native-vector-icons
 
+### ¿Qué veremos en esta sección?
+
+- Comunicar los componentes entre sí, sin importar su ubicación en el árbol de componentes.
+
+- Colocar el tipado a todo y usar el context para poder renderizar nuevamente los componentes cuando surjan cambios.
+
 ### \* PASOS A REALIZAR:
 
 - **NOTA:** Cada vez que se hagan instalaciones de paquetes puede ser que salgan algunos errores o warnings en el dispositivo, si es así entonces tumbar la terminal y volver a levantar el código con `npx react-native run-android` o `npx react-native run-ios` ya que como se hicieron instalaciones entonces hay que tumbarlo y volverlo a levantar para que tome esas últimas instalaciones.

@@ -6,6 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {DrawerNavigator} from './src/navigatorOptions/DrawerNavigator';
 // import { BottomTabsNavigator } from './src/navigatorOptions/BottomTabsNavigator';
 import {Provider as PaperProvider} from 'react-native-paper';
+import {AuthProvider} from './src/context/AuthContext';
 import {DefaultTheme} from './src/theme/appTheme';
 
 const theme = {
@@ -18,13 +19,15 @@ export const App = () => {
     /* Si tiene otro proveedor (como Redux), envuélvalo afuera PaperProvider para que el contexto esté disponible para los componentes renderizados dentro de un Modal desde la biblioteca */
     <PaperProvider theme={theme}>
       <NavigationContainer>
-        {/* se comenta StackNavigator ya que esos componentes no van a ser los principales para mostrar */}
-        {/* <StackNavigator /> */}
-        {/* <DrawerNavigatorBasic /> */}
-        <DrawerNavigator />
+        <AuthProvider>
+          {/* se comenta StackNavigator ya que esos componentes no van a ser los principales para mostrar */}
+          {/* <StackNavigator /> */}
+          {/* <DrawerNavigatorBasic /> */}
+          <DrawerNavigator />
 
-        {/* no se coloca aquí el BottomTabsNavigator porque solo me aparecerían los tabs y no el menú lateral del DrawerNavigator pero yo quiero que se mantenga ese menú lateral y que los tabs sean un screen aparte */}
-        {/* <BottomTabsNavigator/> */}
+          {/* no se coloca aquí el BottomTabsNavigator porque solo me aparecerían los tabs y no el menú lateral del DrawerNavigator pero yo quiero que se mantenga ese menú lateral y que los tabs sean un screen aparte */}
+          {/* <BottomTabsNavigator/> */}
+        </AuthProvider>
       </NavigationContainer>
     </PaperProvider>
   );

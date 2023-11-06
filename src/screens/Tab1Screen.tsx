@@ -1,7 +1,22 @@
 import React from 'react';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {Text, View} from 'react-native';
 import {styles, themeColors} from '../theme/appTheme';
+import {TouchableIcon} from '../components/TouchableIcon';
+
+const Icons = [
+  {
+    iconName: 'airplane-outline',
+    iconSize: 60,
+    iconColor: themeColors.secondary,
+  },
+  {iconName: 'apps-outline'},
+  {iconName: 'bag-handle-outline'},
+  {iconName: 'at-circle-outline'},
+  {iconName: 'balloon-outline'},
+  {iconName: 'bonfire-outline'},
+  {iconName: 'car-sport-outline'},
+  {iconName: 'card-outline'},
+];
 
 export const Tab1Screen = () => {
   return (
@@ -9,33 +24,14 @@ export const Tab1Screen = () => {
       <Text style={styles.globalTitle}>Iconos</Text>
 
       <Text>
-        <Icon name="airplane-outline" size={60} color={themeColors.secondary} />
-
-        <Icon name="apps-outline" size={60} color={themeColors.secondary} />
-
-        <Icon
-          name="bag-handle-outline"
-          size={60}
-          color={themeColors.secondary}
-        />
-
-        <Icon
-          name="at-circle-outline"
-          size={60}
-          color={themeColors.secondary}
-        />
-
-        <Icon name="balloon-outline" size={60} color={themeColors.secondary} />
-
-        <Icon name="bonfire-outline" size={60} color={themeColors.secondary} />
-
-        <Icon
-          name="car-sport-outline"
-          size={60}
-          color={themeColors.secondary}
-        />
-
-        <Icon name="card-outline" size={60} color={themeColors.secondary} />
+        {Icons.map(iconElement => (
+          <TouchableIcon
+            key={iconElement.iconName}
+            iconName={iconElement.iconName}
+            iconSize={iconElement.iconSize}
+            iconColor={iconElement.iconColor}
+          />
+        ))}
       </Text>
     </View>
   );
