@@ -188,26 +188,79 @@
 
           - Algunos problemas que se presentaron fueron:
 
-            - Ir a la ruta `android\gradle.properties` y colocar lo siguiente, el primero fue para mostrar los errores de una forma más clara y el otro fue porque salía un error de que algo estaba deprecado:
+            ```PowerShell (aparece en la terminal)
+            <!-- más código... -->
 
-              ```
-              # ...
+            > Task :react-native-reanimated:buildCMakeDebug[arm64-v8a] FAILED
+
+            Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+            You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+            See https://docs.gradle.org/8.0.1/userguide/command_line_interface.html#sec:command_line_warnings
+            109 actionable tasks: 24 executed, 85 up-to-date
+
+            info 💡 Tip: Make sure that you have set up your development environment correctly, by running react-native doctor. To read more about doctor command visit: https://github.com/react-native-community/cli/blob/main/packages/cli-doctor/README.md#doctor
+
+            <!-- más código... -->
+            ```
+
+            - Ir a la ruta `android\gradle.properties` y colocar lo siguiente al último que es para mostrar los errores de una forma más clara:
+
+              ```groovy (android\gradle.properties)
+              <!-- más código... -->
+
               # When set to all, summary or none, Gradle will use different warning type display. See Command-line logging options for details. Default is summary.
               org.gradle.warning.mode=all
+              ```
+
+            - Luego apareció otro error en la terminal que se soluciona yendo de nuevo el archivo `android\gradle.properties` porque salía un error de que algo estaba deprecado (puede variar lo del deprecado). Es una advertencia que está relacionada con el desarrollo de aplicaciones en Android utilizando el Android Gradle Plugin, el sistema de compilación y construcción de proyectos de Android. En la versión 8.0 del Android Gradle Plugin, se informa que los componentes de software no se crearán automáticamente para la publicación en Maven. Para utilizar el comportamiento futuro, se necesita realizar una acción explícita. Puedes optar por la nueva forma de publicar ajustando una propiedad de Gradle (android.disableAutomaticComponentCreation=true) en el archivo gradle.properties o emplear el nuevo DSL (lenguaje de dominio específico para la publicación). En esta versión, se advierte sobre la obsolescencia de la propiedad AbstractCompile.destinationDir. Esta propiedad está programada para ser eliminada en Gradle 9.0. Se sugiere usar la propiedad destinationDirectory en su lugar. Esto implica que, en futuras versiones de Gradle, el uso de destinationDir podría no ser compatible, por lo que es recomendable migrar al uso de destinationDirectory para evitar problemas en versiones futuras de Gradle. Agregar lo siguiente:
+
+            ```PowerShell (aparece en la terminal)
+            <!-- más código... -->
+
+            Android gradle plugin: 7.4.2
+            Gradle: 8.0.1
+            WARNING:Software Components will not be created automatically for Maven publishing from Android Gradle Plugin 8.0. To opt-in to the future behavior, set the Gradle property android.disableAutomaticComponentCreation=true in the `gradle.properties` file or use the new publishing DSL.
+            The AbstractCompile.destinationDir property has been deprecated. This is scheduled to be removed in Gradle 9.0. Please use the destinationDirectory property instead. Consult the upgrading guide for further information: https://docs.gradle.org/8.0.1/userguide/upgrading_version_7.html#compile_task_wiring
+
+            > Task :react-native-gesture-handler:compileDebugKotlin
+            'compileDebugJavaWithJavac' task (current target is 11) and 'compileDebugKotlin' task (current target is 1.8) jvm target compatibility should be set to the same Java version.
+
+            <!-- más código... -->
+            ```
+
+            ```groovy (android\gradle.properties)
+              <!-- más código... -->
 
               # WARNING:Software Components will not be created automatically for Maven publishing from Android Gradle Plugin 8.0. To opt-in to the future behavior, set the Gradle property android.disableAutomaticComponentCreation=true in the `gradle.properties` file or use the new publishing DSL.
               # The AbstractCompile.destinationDir property has been deprecated. This is scheduled to be removed in Gradle 9.0. Please use the destinationDirectory property instead. Consult the upgrading guide for further information: https://docs.gradle.org/8.0.1/userguide/upgrading_version_7.html#compile_task_wiring
               android.disableAutomaticComponentCreation=true
-              ```
+            ```
 
-            - Otro error fue la ruta, porque habían problemas con el CMake similares a:
+            - Otro error que apareció fue por la ruta, porque habían problemas con el CMake por la cantidad de caracteres, fue un error similar a:
 
-              ```
-                CMake Warning in CMakeLists.txt:
+              ```PowerShell (aparece en la terminal)
+              CMake Warning in CMakeLists.txt:
                 The object file directory
+
+                  C:/<ruta del proyecto>/node_modules/react-native-reanimated/android/.cxx/Debug/576k6a3a/arm64-v8a/CMakeFiles/reanimated.dir/./
+
+                has 201 characters.  The maximum full path to an object file is 250
+                characters (see CMAKE_OBJECT_PATH_MAX).  Object file
+
+                  C_/<ruta del proyecto>/node_modules/react-native-reanimated/Common/cpp/Fabric/FabricUtils.cpp.o
+
+                cannot be safely placed under this directory.  The build may not work
+                correctly.
+
+
+              ninja: error: manifest 'build.ninja' still dirty after 100 tries
+
+              <!-- más codigo... -->
               ```
 
-              - Y lo que se hizo fue mover toda la carpeta del proyecto al escritorio para reducir el tamaño de la ruta y que sea más directa para que no tenga un nombre tan largo.
+              - Y lo que se hizo fue mover toda la carpeta del proyecto al escritorio para reducir el tamaño de la ruta y que sea más directa para que no tenga un nombre tan largo. Ya luego al finalizar el proyecto colocarlo en la ruta que uno desee.
 
         - Terminado ya todo lo anterior, entonces empezar a usar el **Drawer Navigator** para crear las distintas vistas según nuestros requerimientos.
 
@@ -352,7 +405,7 @@
 
                 - Puede ser que salga un error en la terminal al correr `npx react-native run-android` similar a:
 
-                  ```bash (aparece en la terminal)
+                  ```PowerShell (aparece en la terminal)
                   FAILURE: Build failed with an exception.
 
                   * Where:
